@@ -1,0 +1,33 @@
+{
+  "name": "xebia-exercice-front",
+  "version": "1.0.0",
+  "description": "Solution proposée pour la résolution de l'exercice front Harry Potier de Xebia",
+  "main": "Main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThomRick/XebiaExerciceFront.git"
+  },
+  "author": "ThomRick",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ThomRick/XebiaExerciceFront/issues"
+  },
+  "homepage": "https://github.com/ThomRick/XebiaExerciceFront#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-browserify": "^0.5.1",
+    "gulp-mocha": "^2.2.0",
+    "gulp-typescript": "^2.13.6",
+    "gulp-util": "^3.0.7",
+    "mocha": "^2.5.3",
+    "sinon": "^1.17.4",
+    "typescript": "^1.8.10"
+  },
+  "dependencies": {
+    "angular": "^1.5.7",
+    "angular-route": "^1.5.8"
+  }
+}
