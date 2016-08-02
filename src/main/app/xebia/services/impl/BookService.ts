@@ -24,19 +24,19 @@ class BookService implements IBookService {
      */
     public getAllBooks(): ng.IPromise<Array<Book>>{
         return this.httpService.get<Array<Book>>("http://henri-­potier.xebia.fr/books/")
-        .then<Array<Book>>((promiseValue: ng.IHttpPromiseCallbackArg<Array<Book>>) => {
-            return promiseValue.data;
+        .then<Array<Book>>((response: ng.IHttpPromiseCallbackArg<Array<Book>>) => {
+            return response.data;
         });
     }
 
     /**
      * getCommercialOffers
      */
-    public getCommercialOffers(books: Array<Book>): ng.IPromise<Array<CommercialOffer>> {
+    public getCommercialOffers(books: Array<Book>): ng.IPromise<CommercialOffer> {
         let isbnsChaine: string = this.buildIsbnsChaine(books);
-        return this.httpService.get<Array<CommercialOffer>>("http://henri-­potier.xebia.fr/books/" + isbnsChaine + "/commercialOffers")
-        .then<Array<CommercialOffer>>((promiseValue: ng.IHttpPromiseCallbackArg<Array<CommercialOffer>>) => {
-            return promiseValue.data;
+        return this.httpService.get<CommercialOffer>("http://henri-­potier.xebia.fr/books/" + isbnsChaine + "/commercialOffers")
+        .then<CommercialOffer>((response: ng.IHttpPromiseCallbackArg<CommercialOffer>) => {
+            return response.data;
         });
     }
 

@@ -1,6 +1,6 @@
+import Offer from "./Offer";
+
 interface CommercialOffer {
-    type: string;
-    sliceValue?: number;
-    value: number;
+    offers: Array<Offer>
 }
 export default CommercialOffer;

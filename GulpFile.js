@@ -1,8 +1,8 @@
 var gulp = require("gulp");
-// var util = require("gulp-util");
 var tsc = require("gulp-typescript");
-var mocha = require("gulp-mocha");
 var browserify = require("gulp-browserify");
+var jasmine = require("gulp-jasmine");
+var reporters = require("jasmine-reporters");
 
 gulp.task("compile", function() {
     return gulp.src("src/**/*.ts")
@@ -19,7 +19,10 @@ gulp.task("compile", function() {
 
 gulp.task("test", [ "compile" ], function() {
     return gulp.src("target/local/test/**/*.js")
-    .pipe(mocha());
+    .pipe(jasmine({
+        reporter: new reporters.TerminalReporter(),
+        verbose: true
+    }));
 });
 
 gulp.task("deploy-statics", [ "test" ], function() {

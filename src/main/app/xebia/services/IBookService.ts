@@ -4,6 +4,6 @@ import CommercialOffer from "../models/CommercialOffer";
 
 interface IBookService {
     getAllBooks(): ng.IPromise<Array<Book>>;
-    getCommercialOffers(books: Array<Book>): ng.IPromise<Array<CommercialOffer>>;
+    getCommercialOffers(books: Array<Book>): ng.IPromise<CommercialOffer>;
 }
 export default IBookService;

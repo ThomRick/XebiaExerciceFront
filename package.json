@@ -19,11 +19,11 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-browserify": "^0.5.1",
-    "gulp-mocha": "^2.2.0",
+    "gulp-jasmine": "^2.4.0",
     "gulp-typescript": "^2.13.6",
     "gulp-util": "^3.0.7",
-    "mocha": "^2.5.3",
-    "sinon": "^1.17.4",
+    "jasmine-core": "^2.4.1",
+    "jasmine-reporters": "^2.2.0",
     "typescript": "^1.8.10"
   },
   "dependencies": {
