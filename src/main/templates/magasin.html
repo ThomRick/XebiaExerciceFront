@@ -1,7 +1,25 @@
-<div>
-    <ul>
-        <li ng-repeat="book in $ctrl.books" ng-src="book" ng-click="$ctrl.addBookToPanier(book)">
-            {{ book.title }}
-        </li> 
-    </ul>
+<div class="eshop-section section">
+    <div class="container">
+        <h2>Book store</h2>
+        <div class="row">
+            <div class="col-md-3 col-sm-6" ng-repeat="book in $ctrl.books">
+                <div class="shop-item" >
+                    <div class="shop-item-image">
+                        <a><img ng-src="{{ book.cover }}" alt="Item Name"></a>
+                    </div>
+                    <div class="title">
+                        <h3><a>{{ book.title }}</a></h3>
+                    </div>
+                    <div class="price">
+                        {{ book.price }} €
+                    </div>
+                    <div class="actions">
+                        <a class="btn btn-small" ng-click="$ctrl.addBookToPanier(book)">
+                            <i class="icon-shopping-cart icon-white"></i> Add
+                        </a> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

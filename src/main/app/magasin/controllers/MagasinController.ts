@@ -9,24 +9,23 @@ import Book from "../../xebia/models/Book";
 class MagasinController {
 
     static panierService: IPanierService;
+    static rootScopeService: ng.IRootScopeService;
 
     private books: Array<Book> = [];
 
     private $inject = [
+        "$rootScope",
         "bookService",
         "panierService"
     ];
 
-    constructor(bookService: IBookService, panierService: IPanierService) {
+    constructor($rootScope: ng.IRootScopeService, bookService: IBookService, panierService: IPanierService) {
         let self = this;
+        MagasinController.rootScopeService = $rootScope;
         MagasinController.panierService = panierService;
         bookService.getAllBooks()
         .then((books: Array<Book>) => {
-            console.log(books);
-            
             self.books = books;
-            console.log(self.books);
-            
         });        
     }
 
@@ -35,6 +34,7 @@ class MagasinController {
      */
     public addBookToPanier(book: Book) {
         MagasinController.panierService.addBook(book);
+        MagasinController.rootScopeService.$emit("REFRESH_PANIER");
     }
 }
 export default MagasinController;
