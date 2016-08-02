@@ -5,7 +5,7 @@ Solution proposée pour la résolution de l'exercice front Harry Potier de Xebia
 
     - NodeJs version 6.2.0
     - Gulp
-    - Gulp-Mocha
+    - Gulp-Jasmine
     - Gulp-Typescript
     - Gulp-Browserify
     - Angularjs
