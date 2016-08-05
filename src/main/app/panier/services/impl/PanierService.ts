@@ -3,6 +3,8 @@ import Book from "../../../xebia/models/Book";
 
 /**
  * PanierService
+ * 
+ * Implementation of a panier
  */
 class PanierService implements IPanierService {
     

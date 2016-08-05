@@ -5,20 +5,36 @@ import Book from "../../xebia/models/Book";
 
 /**
  * MagasinController
+ * 
+ * Controller that expose user interface functions relative to a magasin
  */
 class MagasinController {
 
-    static panierService: IPanierService;
-    static rootScopeService: ng.IRootScopeService;
-
-    private books: Array<Book> = [];
-
+    /**
+     * Angual injected services
+     */
     private $inject = [
         "$rootScope",
         "bookService",
         "panierService"
     ];
+    static panierService: IPanierService;
+    static rootScopeService: ng.IRootScopeService;
 
+    /**
+     * View fields
+     */
+    private books: Array<Book> = [];
+
+    /**
+     * Constructor
+     * 
+     * Initialise the controller
+     * 
+     * @param $rootScope service
+     * @param book service
+     * @param panier service 
+     */
     constructor($rootScope: ng.IRootScopeService, bookService: IBookService, panierService: IPanierService) {
         let self = this;
         MagasinController.rootScopeService = $rootScope;
@@ -31,6 +47,8 @@ class MagasinController {
 
     /**
      * addBookToPanier
+     * 
+     * @param the book to add to the panier
      */
     public addBookToPanier(book: Book) {
         MagasinController.panierService.addBook(book);

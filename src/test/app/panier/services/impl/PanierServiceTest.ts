@@ -4,7 +4,7 @@ import PanierService from "../../../../../main/app/panier/services/impl/PanierSe
 
 describe("PanierServiceTest", () => {
     describe("#getAmount()", () => {
-        it("should return 65", () => {
+        it("should return 65 with 2 books with on with a price of 30 and another with a price of 35", () => {
             // ARRANGE
             let panierService: IPanierService = new PanierService();
             panierService.addBook({

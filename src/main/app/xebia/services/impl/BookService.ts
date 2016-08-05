@@ -1,4 +1,3 @@
-// http://henri-­potier.xebia.fr/books/c8fabf68-8374-48fe-a7ea-a00ccd07afff,a460afed-e5e7-4e39-a39d-c885c05db861/commercialOffers
 /// <reference path="../../../../../../typings/angularjs/angular.d.ts" />
 import IBookService from "../IBookService";
 import Book from "../../models/Book";
@@ -6,21 +5,35 @@ import CommercialOffer from "../../models/CommercialOffer";
 
 /**
  * BookService
+ * 
+ * Implementation of the Xebia book API 
  */
 class BookService implements IBookService {
 
-    private httpService: ng.IHttpService;
-
+    /**
+     * Angular injected service names
+     */
     static $inject = [
         "$http"
     ];
+
+    /**
+     * http service to execute http request to an API
+     */
+    private httpService: ng.IHttpService;
     
+    /**
+     * Constructor
+     * will initialise service injected services
+     */
     constructor($http: ng.IHttpService) {
         this.httpService = $http;
     }
 
     /**
      * getAllBooks
+     * 
+     * @return a promise with an array of books from Xebia Harry Potier API
      */
     public getAllBooks(): ng.IPromise<Array<Book>>{
         return this.httpService.get<Array<Book>>("http://henri-­potier.xebia.fr/books/")
@@ -31,6 +44,9 @@ class BookService implements IBookService {
 
     /**
      * getCommercialOffers
+     * 
+     * @param books to compute the available commercial offers
+     * @return a promise containing a CommercialOffer with applicable offers for a list of books 
      */
     public getCommercialOffers(books: Array<Book>): ng.IPromise<CommercialOffer> {
         let isbnsChaine: string = this.buildIsbnsChaine(books);
@@ -40,6 +56,12 @@ class BookService implements IBookService {
         });
     }
 
+    /**
+     * buildIsbnsChaine
+     * 
+     * @param books to build the commercial offer isbn chain
+     * @return the isbn chain to call commercial offer service 
+     */
     private buildIsbnsChaine(books: Array<Book>): string {
         let isbnsChaine: string = "";
         for (let i = 0; i < books.length; i++) {
@@ -48,5 +70,6 @@ class BookService implements IBookService {
         }
         return isbnsChaine.slice(0, isbnsChaine.length - 1);
     }
+
 }
 export default BookService;

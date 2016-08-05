@@ -7,15 +7,23 @@ import CommercialOffer from "../../xebia/models/CommercialOffer";
 
 /**
  * CommandeController
+ * 
+ * Controller that expose user interface functions relative to a commande
  */
 class CommandeController {
 
+    /** 
+     * Angular injected services
+     */
     static $inject = [
         "panierService",
         "offerService",
         "bookService"
     ];
 
+    /**
+     * View fields
+     */
     private books: Array<Book> = [];
     private amount: number = 0;
     private offer: Offer = {
@@ -24,6 +32,15 @@ class CommandeController {
     };
     private offerAmount: number = 0;
 
+    /**
+     * Constructor
+     * 
+     * Initlise the controller
+     * 
+     * @param panier service
+     * @param offer service
+     * @param book service
+     */
     constructor(panierService: IPanierService, offerService: IOfferService, bookService: IBookService) {
         this.books = panierService.getBooks();
         this.amount = panierService.getAmount();
