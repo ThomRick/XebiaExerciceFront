@@ -1,26 +1,25 @@
 <div class="section">
     <div class="container">
         <div class="row">
-            <div class="col-md-12" ng-repeat="book in $ctrl.books">
+            <div class="col-md-12" ng-repeat="item in $ctrl.items">
                 <table class="shopping-cart">
                     <tr>
                         <td class="image">
-                            <a>
-                                <img ng-src="{{ book.cover }}" alt="Item Name">
-                            </a>
+                            <a><img ng-src="{{ item.description.cover }}" ng-alt="{{ item.description.title }}"></a>
                         </td>
                         <td>
                             <div class="cart-item-title">
-                                <a>
-                                    {{ book.title }}
-                                </a>
+                                <a>{{ item.description.title }}</a>
                             </div>
                         </td>
+                        <td class="quantity">
+                            <input class="form-control input-sm input-micro" type="text" ng-value="{{ item.quantity }}">
+                        </td>
                         <td class="price">
-                            {{ book.price }} €
+                            {{ item.price * item.quantity |number: 2 }} €
                         </td>
                         <td class="actions">
-                            <a href="#" class="btn btn-xs btn-grey">    
+                            <a ng-click="$ctrl.removeBook(item)" class="btn btn-xs btn-grey">    
                                 <i class="glyphicon glyphicon-trash"></i>
                             </a>
                         </td>
@@ -32,25 +31,28 @@
         <div class="row">
             <div class="col-md-4  col-md-offset-0 col-sm-6 col-sm-offset-6">
             </div>
-            <!-- Shipment Options -->
             <div class="col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-6">
             </div>
             <div class="col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-6">
                 <table class="cart-totals">
                     <tr>
+                        <td><b>Sub total</b></td>
+                        <td>{{ $ctrl.itemsAmount |number: 2 }} €</td>
+                    </tr>
+                    <tr>
                         <td><b>Discount</b></td>
-                        <td>- {{ $ctrl.offerAmount }} €</td>
+                        <td>- {{ $ctrl.offerAmount |number: 2 }} €</td>
                     </tr>
                     <tr class="cart-grand-total">
                         <td><b>Total</b></td>
-                        <td><b>{{ $ctrl.amount - $ctrl.offerAmount }} €</b></td>
+                        <td><b>{{ $ctrl.itemsAmount - $ctrl.offerAmount |number: 2 }} €</b></td>
                     </tr>
                 </table>
                 <div class="pull-right">
-                    <a href="#" class="btn btn-grey">
+                    <!--<a href="#" class="btn btn-grey">
                         <i class="glyphicon glyphicon-refresh"></i> 
                         UPDATE
-                    </a>
+                    </a>--> 
                     <a href="#" class="btn">
                         <i class="glyphicon glyphicon-shopping-cart icon-white"></i> 
                         CHECK OUT

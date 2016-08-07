@@ -1,7 +1,9 @@
 /// <reference path="../../../../../typings/angularjs/angular.d.ts" />
 import IBookService from "../../xebia/services/IBookService";
 import IPanierService from "../../panier/services/IPanierService";
+import IStoreService from "../services/IStoreService";
 import Book from "../../xebia/models/Book";
+import Item from "../../panier/models/Item";
 
 /**
  * MagasinController
@@ -15,16 +17,17 @@ class MagasinController {
      */
     private $inject = [
         "$rootScope",
-        "bookService",
-        "panierService"
+        "panierService",
+        "storeService"
     ];
     static panierService: IPanierService;
+    static storeService: IStoreService;
     static rootScopeService: ng.IRootScopeService;
 
     /**
      * View fields
      */
-    private books: Array<Book> = [];
+    private items: Array<Item> = [];
 
     /**
      * Constructor
@@ -34,24 +37,24 @@ class MagasinController {
      * @param $rootScope service
      * @param book service
      * @param panier service 
-     */
-    constructor($rootScope: ng.IRootScopeService, bookService: IBookService, panierService: IPanierService) {
+     */ 
+    constructor($rootScope: ng.IRootScopeService, panierService: IPanierService, storeService: IStoreService) {
         let self = this;
         MagasinController.rootScopeService = $rootScope;
         MagasinController.panierService = panierService;
-        bookService.getAllBooks()
-        .then((books: Array<Book>) => {
-            self.books = books;
-        });        
+        storeService.getAllItems()
+        .then((items: Array<Item>) => {
+            self.items = items;
+        });
     }
 
     /**
      * addBookToPanier
      * 
-     * @param the book to add to the panier
+     * @param the item to add
      */
-    public addBookToPanier(book: Book) {
-        MagasinController.panierService.addBook(book);
+    public addBookToPanier(item: Item) {
+        MagasinController.panierService.addItem(item);
         MagasinController.rootScopeService.$emit("REFRESH_PANIER");
     }
 }

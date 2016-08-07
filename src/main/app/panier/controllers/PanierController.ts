@@ -1,5 +1,6 @@
 /// <reference path="../../../../../typings/angularjs/angular.d.ts" />
 import IPanierService from "../services/IPanierService";
+import Item from "../models/Item";
 import Book from "../../xebia/models/Book";
 
 /**
@@ -34,9 +35,9 @@ class PanierController {
      */
     constructor($rootScope: ng.IRootScopeService, panierService: IPanierService) {
         PanierController.panierService = panierService;
-        let books: Array<Book> = PanierController.panierService.getBooks();
-        this.items = books.length;
-        this.computeAmount(books);
+        let items: Array<Item> = PanierController.panierService.getItems();
+        this.items = items.length;
+        this.computeAmount(items);
         this.addEvent($rootScope);
     }
 
@@ -47,23 +48,23 @@ class PanierController {
      */
     private addEvent($rootScope: ng.IRootScopeService): void {
         $rootScope.$on("REFRESH_PANIER", () => {
-            let books: Array<Book> = PanierController.panierService.getBooks();
-            this.items = books.length;
-            this.computeAmount(books);
+            let items: Array<Item> = PanierController.panierService.getItems();
+            this.items = items.length;
+            this.computeAmount(items);
         });
     }
 
     /**
      * Function that compute the amount of a list of book
      * 
-     * @param list off books to compute the amount
+     * @param list off items to compute the amount
      * @return the amount of the list of book
      */
-    private computeAmount(books: Array<Book>) {
+    private computeAmount(items: Array<Item>) {
         this.amount = 0;
-        for (let i = 0; i < books.length; i++) {
-            let book: Book = books[i];
-            this.amount += book.price;
+        for (let i = 0; i < items.length; i++) {
+            let item: Item = items[i];
+            this.amount += item.price * item.quantity;
         }
     }
 }

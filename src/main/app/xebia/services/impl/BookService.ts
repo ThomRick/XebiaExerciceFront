@@ -42,34 +42,5 @@ class BookService implements IBookService {
         });
     }
 
-    /**
-     * getCommercialOffers
-     * 
-     * @param books to compute the available commercial offers
-     * @return a promise containing a CommercialOffer with applicable offers for a list of books 
-     */
-    public getCommercialOffers(books: Array<Book>): ng.IPromise<CommercialOffer> {
-        let isbnsChaine: string = this.buildIsbnsChaine(books);
-        return this.httpService.get<CommercialOffer>("http://henri-­potier.xebia.fr/books/" + isbnsChaine + "/commercialOffers")
-        .then<CommercialOffer>((response: ng.IHttpPromiseCallbackArg<CommercialOffer>) => {
-            return response.data;
-        });
-    }
-
-    /**
-     * buildIsbnsChaine
-     * 
-     * @param books to build the commercial offer isbn chain
-     * @return the isbn chain to call commercial offer service 
-     */
-    private buildIsbnsChaine(books: Array<Book>): string {
-        let isbnsChaine: string = "";
-        for (let i = 0; i < books.length; i++) {
-            let book: Book = books[i];
-            isbnsChaine += book.isbn + ",";
-        }
-        return isbnsChaine.slice(0, isbnsChaine.length - 1);
-    }
-
 }
 export default BookService;

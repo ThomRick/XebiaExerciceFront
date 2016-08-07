@@ -1,11 +1,11 @@
-import Offer from "./Offer";
-
 /**
  * CommercialOffer
  * 
- * Description of a commercial offer from Xebia Harry Potier API
+ * Description of a CommercialOffer from the Xebia Henry Potier API
  */
 interface CommercialOffer {
-    offers: Array<Offer>
+    type: string;
+    sliceValue?: number;
+    value: number;
 }
 export default CommercialOffer;

@@ -1,8 +1,12 @@
 import CommercialOffer from "../../xebia/models/CommercialOffer";
-import Offer from "../../xebia/models/Offer";
 
+/**
+ * IOfferService
+ * 
+ * Interface to compute commercial offers
+ */
 interface IOfferService {
-    getBestOffer(amount: number, commercialOffer: CommercialOffer): Offer;
-    computeOfferAmount(offer: Offer, amount: number): number;
+    getBestCommercialOffer(amount: number, commercialOffers: Array<CommercialOffer>): CommercialOffer;
+    computeCommercialOfferAmount(commercialOffer: CommercialOffer, amount: number): number;
 }
 export default IOfferService;
